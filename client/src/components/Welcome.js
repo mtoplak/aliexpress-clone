@@ -1,5 +1,7 @@
 import React from "react";
 
+// This is out of position on bigger screen. Try using flex / gridbox for alignments 
+// Do not use <br /> tags. Try achieving everything with css
 function Welcome() {
   return (
     <React.Fragment>

@@ -16,6 +16,10 @@ function FeaturedProduct(props) {
           {props.product.productName}
         </span>
       </div>
+      {/* you can instead use: 
+     {props.index === 1 && <div>
+          <br />
+        </div> }*/}
       {props.index === 1 ? (
         <div>
           <br />
