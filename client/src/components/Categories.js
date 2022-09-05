@@ -13,6 +13,7 @@ function Categories() {
             ></img>{" "}
             Categories
             <dl>
+              {/* Put this kind of constants into constants.js file and export them here and just call categories.map(...) */}
               <dt>Cellphones & Telecommunications</dt>
               <dt>Computer, Office & Security</dt>
               <dt>Consumer Electonics</dt>
