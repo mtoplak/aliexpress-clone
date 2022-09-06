@@ -1,8 +1,6 @@
 import React from "react";
 
 function FeaturedProduct(props) {
-  console.log(props);
-
   return (
     <React.Fragment>
       <div key={props.index} className="featured-product">
@@ -12,16 +10,12 @@ function FeaturedProduct(props) {
           src={props.product.imageUrl}
         ></img>
         <br />
-        <span style={{ fontWeight: "bold", fontSize: "12px" }}>
+        <span style={{ fontWeight: "bold", fontSize: "12px"}}>
           {props.product.productName}
         </span>
       </div>
-      {props.index === 1 ? (
-        <div>
+      {props.index === 3 && (
           <br />
-        </div>
-      ) : (
-        ""
       )}
     </React.Fragment>
   );

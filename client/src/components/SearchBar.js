@@ -5,8 +5,9 @@ import logo from "../assets/logo.png";
 function SearchBar() {
   return (
     <React.Fragment>
+      <div className="flex-container search-bar">
       <img className="logo" src={logo} alt="logo"></img>
-
+      
       <form id="form" method="GET" action="#">
         <input
           type="text"
@@ -24,7 +25,7 @@ function SearchBar() {
           ></img>
         </span>
       </form>
-      <hr></hr>
+      <hr></hr></div>
     </React.Fragment>
   );
 }

@@ -3,13 +3,13 @@ import Categories from "./Categories.js";
 import Welcome from "./Welcome.js";
 import FeaturedProducts from "./FeaturedProducts";
 
-function HomeSection(props) {
+function HomeSection() {
   return (
     <React.Fragment>
-      <div id="section">
-        <Categories/>
-        <Welcome/>
-        <FeaturedProducts products={props.products}/>
+      <div id="section" className="flex-container">
+        <Categories />
+        <Welcome />
+        <FeaturedProducts />
       </div>
     </React.Fragment>
   );
