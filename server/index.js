@@ -1,28 +1,35 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-require('dotenv').config();
+require("dotenv").config();
 
-const mongoDb = require('./mongodb-connection');
+const mongoDb = require("./mongodb-connection");
 
 mongoDb.connectToServer(function (err) {
   //App goes online once this callback occurs
   //Main Routes
-  const productsRouter = require('./routes/sortedProducts');
-  const categoriesRouter = require('./routes/categories');
-  app.use('/products', productsRouter);
-  app.use('/categories', categoriesRouter);
+  const productsRouter = require("./routes/sortedProducts");
+  const categoriesRouter = require("./routes/categories");
+  const productRouter = require("./routes/product");
+  const productsFromCategoryRouter = require("./routes/productsFromCategory");
+  const subcategoryRouter = require("./routes/subcategories");
+  app.use("/products", productsRouter);
+  app.use("/categories", categoriesRouter);
+  app.use("/product", productRouter);
+  app.use("/c", productsFromCategoryRouter);
+  app.use("/subcategories", subcategoryRouter);
+
   //Handle 404
   app.use(function (req, res, next) {
-  next(createError(404));
+    next(createError(404));
   });
   //Handle 500
   app.use(function (err, req, res, next) {
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-  res.status(err.status || 500).send('Error')
+    res.locals.message = err.message;
+    res.locals.error = req.app.get("env") === "development" ? err : {};
+    res.status(err.status || 500).send("Error");
   });
-  })
+});
 
 app.use(express.json());
 app.use(cors());

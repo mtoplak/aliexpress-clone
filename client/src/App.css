@@ -77,7 +77,7 @@ hr {
   background-color: white;
   width: 20%;
   border-radius: 9px 9px 9px 9px;
-  padding: 9px;
+  padding: 15px;
 }
 
 dt {
@@ -108,11 +108,12 @@ dt:hover {
   padding: 3px;
   color: white;
   font-weight: bold;
-  font-size: large;
+  font-size: 16px;
   border: none;
   border-radius: 20px;
   height: 40px;
   margin-right: 10px;
+  width: 90px;
 }
 
 #signInBtn {
@@ -121,7 +122,8 @@ dt:hover {
   font-weight: bold;
   border-radius: 20px;
   height: 40px;
-  font-size: large;
+  font-size: 16px;
+  width: 90px;
 }
 
 .featured {
@@ -133,25 +135,21 @@ dt:hover {
 
 #featured-products {
   border-radius: 9px;
-  padding-top: 5px;
+  padding: 10px 0 5px 10px;
   padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 0;
-  margin-right: 10px;
   width: 70%;
-  height: 490px;
+  height: 483px;
 }
 
 .featured-product {
   display: inline-block;
   text-align: center;
-  margin-right: 7px;
   background-color: white;
   border-radius: 8px;
-  padding: 4px;
+  padding: 8px;
   width: 200px;
   height: 180px;
-  margin-top: 4px;
+  margin: 4px 7px;
 }
 
 .flex-container {
@@ -160,9 +158,287 @@ dt:hover {
 
 .flex-container > div {
   background-color: #f1f1f1;
-  margin-left: 8px;
-  margin-top: 10px;
-  margin-bottom: 7px;
+  margin: 10px 0 7px 8px;
   padding: 25px;
   font-size: 30px;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+.product {
+  width: 400px;
+  height: 400px;
+}
+
+.search-result {
+  display: inline-block;
+  background-color: #f2f2f2;
+  margin-right: 13px;
+  margin-bottom: 10px;
+  border-radius: 9px;
+  max-width: 200px;
+  height: 275px;
+  font-size: smaller;
+}
+
+.image-results {
+  width: 200px;
+  height: 200px;
+  border-radius: 9px;
+}
+
+#categoriesOnSearch {
+  padding: 9px;
+  background-color: white;
+  font-size: small;
+  display: inline-block;
+  margin-left: 15px;
+  width: 270px;
+}
+
+#subcategories {
+  margin-left: 13px;
+}
+
+#results {
+  display: inline-block;
+  margin: 8px 0 0 8px;
+}
+
+.is-active {
+  font-weight: bold;
+}
+
+#productOnPage {
+  margin: 50px;
+  display: inline-block;
+}
+
+#buyNow {
+  background-image: linear-gradient(213deg, #ff7b48 7%, #f73c22 92%);
+  margin-right: 7px;
+  border-radius: 3px;
+  border: none;
+  color: white;
+  font-size: 16px;
+  height: 44px;
+  width: 165px;
+}
+
+#addToCart {
+  background-image: linear-gradient(239deg, #ffac2d 7%, #ff8219);
+  margin-right: 7px;
+  border-radius: 3px;
+  border: none;
+  color: white;
+  font-size: 16px;
+  height: 44px;
+  width: 165px;
+}
+
+#addToWishList {
+  height: 44px;
+  background-color: white;
+  border-radius: 3px;
+  border: 1px solid;
+}
+
+#product-title-text {
+  font-size: 16px;
+  line-height: 19px;
+  margin: 0;
+  width: fit-content;
+  margin: 7px 0 7px;
+}
+
+.changeQuantity {
+  border-radius: 50%;
+  border: none;
+  background: #f2f2f2;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+i {
+  color: #ffc000;
+}
+
+.product-price {
+  margin: 10px 0 4px;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.detail {
+  margin: 11px 0 6px;
+}
+
+.nav {
+  display: block;
+  margin: 1rem 0;
+}
+
+.nav:hover,
+.nav-item:hover {
+  font-weight: bold;
+}
+
+.result-caption {
+  padding-left: 4px;
+  padding-right: 2px;
+  font-size: 14px;
+  margin: 7px 0 1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 7px;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+#myAcc {
+  border: none;
+  background-color: rgb(200, 200, 200);
+}
+
+#wishList {
+  border: none;
+  background-color: rgb(200, 200, 200);
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  padding: 10px;
+  display: none;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  width: 150px;
+  right: 0px;
+}
+
+.dropdown-content a {
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover #myAcc {
+  color: rgb(251, 53, 53);
+  background-color: white;
+}
+
+#registerDropdown {
+  background-color: #ff4747;
+  color: #fff;
+  border-radius: 2px;
+  font-weight: 700;
+  padding: 5px;
+  width: 80px;
+  height: 30px;
+  text-align: center;
+  border: none;
+  margin: 3px 0 7px;
+  text-align: center;
+}
+
+#signInDropdown {
+  border-radius: 2px;
+  font-weight: 700;
+  padding: 6px;
+  width: 80px;
+  text-align: center;
+  border: none;
+  background-color: #fff1f1;
+  color: #ff4747;
+  cursor: pointer;
+}
+
+.mymodal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  height: 450px;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ccc;
+  background: #fff;
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+  text-align: center;
+}
+
+.myoverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.modalBtn{
+  border: none;
+  font-size: 20px;
+  background-color: white;
+  cursor: pointer;
+  padding-bottom: 4px;
+}
+
+.modalSubmit{
+  background: linear-gradient(90deg,rgba(255,100,14,.5),rgba(255,48,0,.5));
+  border-radius: 20px;
+  border: none;
+  width: 180px;
+  height: 40px;
+  font-weight: bold;
+  color: white;
+  font-size: 15px;
+}
+
+.inputModal{
+  width: 190px;
+  height: 27px;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 4px
+}
+
+.currentTab{
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: #ff7539;
+  text-underline-offset: 5px;
 }

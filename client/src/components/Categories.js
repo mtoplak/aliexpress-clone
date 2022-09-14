@@ -1,6 +1,7 @@
 import React from "react";
 import category from "../assets/categories.png";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const host = process.env.REACT_APP_API_URL;
 
@@ -27,7 +28,7 @@ function Categories() {
             ></img>{" "}
             Categories
             <dl>
-              {categories.map((category, index) => (<dt key={index}>{category}</dt>))}
+              {categories.map((category, index) => (<Link to={`/${category}`} key={index}><dt key={index}>{category}</dt></Link>))}
             </dl>
           </div></div>
     </React.Fragment>

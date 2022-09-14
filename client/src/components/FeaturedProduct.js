@@ -1,23 +1,25 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function FeaturedProduct(props) {
   return (
-    <React.Fragment>
+    <>
       <div key={props.index} className="featured-product">
-        <img
-          className="featured"
-          alt={props.product.productName}
-          src={props.product.imageUrl}
-        ></img>
-        <br />
-        <span style={{ fontWeight: "bold", fontSize: "12px"}}>
-          {props.product.productName}
-        </span>
+        <Link to={`/product/${props.product.productName}`}>
+          <img
+            className="featured"
+            alt={props.product.productName}
+            src={props.product.imageUrl}
+          ></img>
+          <figcaption
+            style={{ fontWeight: "bold", fontSize: "12px", margin: "7px" }}
+          >
+            {props.product.productName}
+          </figcaption>
+        </Link>
       </div>
-      {props.index === 3 && (
-          <br />
-      )}
-    </React.Fragment>
+      {props.index === 3 && <br />}
+    </>
   );
 }
 

@@ -5,13 +5,11 @@ import FeaturedProducts from "./FeaturedProducts";
 
 function HomeSection() {
   return (
-    <React.Fragment>
       <div id="section" className="flex-container">
         <Categories />
         <Welcome />
         <FeaturedProducts />
       </div>
-    </React.Fragment>
   );
 }
 

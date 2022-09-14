@@ -81,7 +81,7 @@ MongoClient.connect(url, function (err, db) {
     {
       productName: "VR Protective Cover For Oculus Quest 2",
       category: "Consumer Electonics",
-      subcategory: "VR/AR Devices",
+      subcategory: "VR & AR Devices",
       price: 7.31,
       imageUrl:
         "https://ae01.alicdn.com/kf/Hd0c4e28d16e046f7a9a507cf44a50e7b1/VR-Protective-Cover-For-Oculus-Quest-2-VR-Touch-Controller-Silicone-Shell-With-Strap-Handle-Grip.jpg_Q90.jpg_.webp",
@@ -148,7 +148,7 @@ MongoClient.connect(url, function (err, db) {
     {
       productName: "Stainless Steel Chopsticks Korean Style Metal",
       category: "Home, Pet & Appliances",
-      subcategory: "Kitchen, Dining & Bar",
+      subcategory: "Dining",
       price: 0.92,
       imageUrl:
         "https://ae01.alicdn.com/kf/Sf1aa7a7ebd934f93a9411c081c91d73eG/Stainless-Steel-Chopsticks-Korean-Style-Metal-Chopsticks-Round-Children-s-Adult-Chopsticks-Threaded-Non-slip-Handle.jpg_Q90.jpg_.webp",
@@ -159,7 +159,7 @@ MongoClient.connect(url, function (err, db) {
     {
       productName: "5 pairs of bamboo chopsticks household",
       category: "Home, Pet & Appliances",
-      subcategory: "Kitchen, Dining & Bar",
+      subcategory: "Dining",
       price: 4.71,
       imageUrl:
         "https://ae01.alicdn.com/kf/H149975497dfd4086969e273463352dc23/5-pairs-of-bamboo-chopsticks-household-long-chopsticks-family-pointy-cute-personality-bamboo-non-slip-set.jpg_Q90.jpg_.webp",
@@ -170,7 +170,7 @@ MongoClient.connect(url, function (err, db) {
     {
       productName: "Creative Snack Finger Chopsticks Portable",
       category: "Home, Pet & Appliances",
-      subcategory: "Kitchen, Dining & Bar",
+      subcategory: "Dining",
       price: 1.33,
       imageUrl:
         "https://ae01.alicdn.com/kf/Sf326b86f546b4d62b8eb1d4129be65d9m/Creative-Snack-Finger-Chopsticks-Portable-Potato-Chip-Tongs-Salad-Food-Clip-Easy-to-Operate-Not-Dirty.jpg_Q90.jpg_.webp",
@@ -193,7 +193,7 @@ MongoClient.connect(url, function (err, db) {
     {
       productName: "Stainless Steel Hip Flask with Funnel Pocket",
       category: "Home, Pet & Appliances",
-      subcategory: "Kitchen, Dining & Bar",
+      subcategory: "Bar",
       price: 4.88,
       imageUrl:
         "https://ae01.alicdn.com/kf/H95f0a4bd70834d1899d0e08a80f9f86bV/LMETJMA-1-4-5-6-7-8-9-10-oz-Stainless-Steel-Hip-Flask-with-Funnel.jpg_Q90.jpg_.webp",
@@ -204,7 +204,7 @@ MongoClient.connect(url, function (err, db) {
     {
       productName: "Double Spirit Measuring Cup Cocktail",
       category: "Home, Pet & Appliances",
-      subcategory: "Kitchen, Dining & Bar",
+      subcategory: "Bar",
       price: 4.03,
       imageUrl:
         "https://ae01.alicdn.com/kf/H3cd05f14b4424881b3eaa1ab631fb861Y/Ounce-Jigger-Cocktail-Double-Short-Drink-Spirit-Mixer-Measure-Cup-For-Bar-1-oz-2-oz.jpeg_Q90.jpeg_.webp",
@@ -215,7 +215,7 @@ MongoClient.connect(url, function (err, db) {
     {
       productName: "Electric Egg Beater Milk Frother Egg Blender",
       category: "Home, Pet & Appliances",
-      subcategory: "Kitchen, Dining & Bar",
+      subcategory: "Kitchen",
       price: 2.77,
       imageUrl:
         "https://ae01.alicdn.com/kf/S639207241ede45c88d85c8357913ed66s/Electric-Egg-Beater-Milk-Frother-Egg-String-Whisk-Mixer-Hand-for-Coffee-Cappuccino-Creamer-Frothy-Blend.jpg_Q90.jpg_.webp",
@@ -226,7 +226,7 @@ MongoClient.connect(url, function (err, db) {
     {
       productName: "Chopsticks Forks Holder",
       category: "Home, Pet & Appliances",
-      subcategory: "Kitchen, Dining & Bar",
+      subcategory: "Dining",
       price: 1.16,
       imageUrl:
         "https://ae01.alicdn.com/kf/Hebe23c84dbf54d26a274d8ff19a3e1a8m/New-Chopsticks-Pillow-Chopstick-Rest-Home-Decoration-Cat-Chopsticks-Forks-Holder-Chopsticks-Holder-Spoon-Holder.jpg_Q90.jpg_.webp",
@@ -237,7 +237,7 @@ MongoClient.connect(url, function (err, db) {
     {
       productName: "Cupcake Muffin Paper",
       category: "Home, Pet & Appliances",
-      subcategory: "Kitchen, Dining & Bar",
+      subcategory: "Kitchen",
       price: 1.86,
       imageUrl:
         "https://ae01.alicdn.com/kf/Sa369c4c45ada487291ab8fb268694996h/100Pcs-CupCake-Cake-Mold-Muffin-Box-Oil-Proof-Paper-Holder-Cup-Case-Baking-Tools-DIY-Cake.jpg_Q90.jpg_.webp",
@@ -248,7 +248,7 @@ MongoClient.connect(url, function (err, db) {
     {
       productName: "6Pcs/Set Stainless Steel Ice Cream Candy Shape",
       category: "Home, Pet & Appliances",
-      subcategory: "Kitchen, Dining & Bar",
+      subcategory: "Kitchen",
       price: 3.5,
       imageUrl:
         "https://ae01.alicdn.com/kf/H29154ba9d1e642499cdd459f4dab0a42h/6Pcs-Set-Stainless-Steel-Ice-Cream-Candy-Shape-Cookie-Cutter-Mold-DIY-Fondant-Biscuit-Mould-Cake.jpg_Q90.jpg_.webp",
@@ -259,7 +259,7 @@ MongoClient.connect(url, function (err, db) {
     {
       productName: "Hotfix Stones Rhinestone Glitter Crystal",
       category: "Home, Pet & Appliances",
-      subcategory: "Arts, Crafts & Sewing",
+      subcategory: "Crafts",
       price: 2.5,
       imageUrl:
         "https://ae01.alicdn.com/kf/S9049d45c7cb0463b9f23f7d4cc570d7ax/DMC-SS6-SS30-Crystal-AB-Hotfix-Stones-Hot-Fix-Rhinestone-Glitter-Crystal-Strass-Iron-On-Rhinestones.jpg_Q90.jpg_.webp",
@@ -270,7 +270,7 @@ MongoClient.connect(url, function (err, db) {
     {
       productName: "3cm Disco Ball",
       category: "Home, Pet & Appliances",
-      subcategory: "Arts, Crafts & Sewing",
+      subcategory: "Arts",
       price: 2.49,
       imageUrl:
         "https://ae01.alicdn.com/kf/S999b406d68a141f690e61466cb71e0f8J/3cm-Mirror-Balls-Reflective-Glass-Ball-Disco-Xmas-Tree-Home-Festive-KTV-Party-Decoration-Ornaments-DJ.jpg_Q90.jpg_.webp",
