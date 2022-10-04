@@ -6,9 +6,11 @@ import useFetchProductsFromCategory from "./useFetchProductsFromCategory";
 import useFetchSubcategories from "./useFetchSubcategories";
 import { Link } from "react-router-dom";
 
-const host = process.env.REACT_APP_API_URL;
+const host = require('../constants').host;
+
 
 function CategoryProducts() {
+  console.log(host);
   const params = useParams();
   const { category } = params;
   const [products] = useFetchProductsFromCategory(`${host}/c/${category}`);

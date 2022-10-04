@@ -142,14 +142,14 @@ dt:hover {
 }
 
 .featured-product {
-  display: inline-block;
+  display: inline-grid;
   text-align: center;
   background-color: white;
   border-radius: 8px;
   padding: 8px;
   width: 200px;
   height: 180px;
-  margin: 4px 7px;
+  margin: 4px 9px 3px 4px;
 }
 
 .flex-container {
@@ -417,7 +417,7 @@ i {
 }
 
 .modalSubmit{
-  background: linear-gradient(90deg,rgba(255,100,14,.5),rgba(255,48,0,.5));
+  background: linear-gradient(90deg,#ff640e,#ff3000);;
   border-radius: 20px;
   border: none;
   width: 180px;
@@ -425,6 +425,7 @@ i {
   font-weight: bold;
   color: white;
   font-size: 15px;
+  cursor: pointer;
 }
 
 .inputModal{
@@ -441,4 +442,12 @@ i {
   text-decoration: underline;
   text-decoration-color: #ff7539;
   text-underline-offset: 5px;
+}
+
+.warning{
+  color: red;
+  font-size: small;
+  margin: 15px 0 15px;
+  display: inline-block;
+  font-weight: bold;
 }

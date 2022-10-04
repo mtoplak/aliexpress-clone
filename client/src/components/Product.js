@@ -7,7 +7,7 @@ import AddToWishlist from "../assets/heart.svg";
 import { useEffect, useState } from "react";
 import Rating from "./Rating";
 
-const host = process.env.REACT_APP_API_URL;
+const host = require('../constants').host;
 
 function Product() {
   const params = useParams();

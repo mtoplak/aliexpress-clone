@@ -5,7 +5,8 @@ import useFetchSubcategories from "./useFetchSubcategories";
 import Header from "./Header";
 import SearchBar from "./SearchBar";
 import { useParams } from "react-router-dom";
-const host = process.env.REACT_APP_API_URL;
+
+const host = require('../constants').host;
 
 function SubcategoryProducts() {
   const params = useParams();

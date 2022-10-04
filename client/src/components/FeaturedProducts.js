@@ -2,7 +2,7 @@ import React from "react";
 import FeaturedProduct from "./FeaturedProduct";
 import useFetchProducts from "./useFetchProducts";
 
-const host = process.env.REACT_APP_API_URL;
+const host = require('../constants').host;
 
 
 function FeaturedProducts() {

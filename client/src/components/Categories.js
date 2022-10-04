@@ -3,7 +3,7 @@ import category from "../assets/categories.png";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const host = process.env.REACT_APP_API_URL;
+const host = require('../constants').host;
 
 function Categories() {
   const [categories, setCategories] = useState([]);

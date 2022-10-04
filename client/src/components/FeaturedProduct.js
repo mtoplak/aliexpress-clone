@@ -12,7 +12,7 @@ function FeaturedProduct(props) {
             src={props.product.imageUrl}
           ></img>
           <figcaption
-            style={{ fontWeight: "bold", fontSize: "12px", margin: "7px" }}
+            style={{ fontWeight: "bold", fontSize: "12px", marginTop: "7px" }}
           >
             {props.product.productName}
           </figcaption>

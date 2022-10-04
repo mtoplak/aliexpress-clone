@@ -1,7 +1,6 @@
 var MongoClient = require("mongodb").MongoClient;
 
 const url = require("./config").url;
-console.log(url)
 
 
 MongoClient.connect(url, function (err, db) {

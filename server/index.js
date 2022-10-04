@@ -4,6 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const mongoDb = require("./mongodb-connection");
+const { application } = require("express");
 
 mongoDb.connectToServer(function (err) {
   //App goes online once this callback occurs
@@ -13,11 +14,15 @@ mongoDb.connectToServer(function (err) {
   const productRouter = require("./routes/product");
   const productsFromCategoryRouter = require("./routes/productsFromCategory");
   const subcategoryRouter = require("./routes/subcategories");
+  const registerRouter = require("./routes/register");
+  const signInRouter = require("./routes/signIn");
   app.use("/products", productsRouter);
   app.use("/categories", categoriesRouter);
   app.use("/product", productRouter);
   app.use("/c", productsFromCategoryRouter);
   app.use("/subcategories", subcategoryRouter);
+  app.use("/register", registerRouter);
+  app.use("/signIn", signInRouter);
 
   //Handle 404
   app.use(function (req, res, next) {
