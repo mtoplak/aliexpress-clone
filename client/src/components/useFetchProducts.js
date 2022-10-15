@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 
-const useFetchProducts = (url) => {
+const host = require('../constants').host;
+
+const useFetchProducts = () => {
   const [products, setProducts] = useState(null);
+  const url = host + "/products" ;
 
   useEffect(() => {
     fetch(url)

@@ -1,6 +1,7 @@
 var MongoClient = require("mongodb").MongoClient;
 
 const url = require("./config").url;
+const DATABASE_NAME = require("./config").name;
 
 
 MongoClient.connect(url, function (err, db) {
@@ -8,7 +9,7 @@ MongoClient.connect(url, function (err, db) {
     console.log(err);
     throw err;
   }
-  var dbo = db.db("aliexpress-clone");
+  var dbo = db.db(DATABASE_NAME);
   var myobj = [
     {
       productName: "Walkie Talkie Children 2 Pcs Children's Radio",

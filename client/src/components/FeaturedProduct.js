@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function FeaturedProduct(props) {
   return (
     <>
-      <div key={props.index} className="featured-product">
+      <div className="featured-product">
         <Link to={`/product/${props.product.productName}`}>
           <img
             className="featured"
@@ -18,7 +18,7 @@ function FeaturedProduct(props) {
           </figcaption>
         </Link>
       </div>
-      {props.index === 3 && <br />}
+      {props.breakLine === 3 && <br />}
     </>
   );
 }

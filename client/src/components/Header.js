@@ -45,7 +45,9 @@ function Header() {
       if (response.status === 400) {
         setExistingUser("This email already exists!");
       } else {
-        window.location.reload();
+        setIsOpenSecond(false);
+        setIsOpen(true);
+        //window.location.reload();
       }
     }
   };

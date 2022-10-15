@@ -25,7 +25,8 @@ function Welcome() {
     } else {
       const response = await fetch(`${host}/register`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json"
+      },
         body: JSON.stringify({
           email: email,
           password: password,
@@ -35,7 +36,9 @@ function Welcome() {
       if (response.status === 400) {
         setExistingUser("This email already exists!");
       } else {
-        window.location.reload();
+        setIsOpenSecond(false);
+        setIsOpen(true);
+        //window.location.reload();
       }
     }
   };

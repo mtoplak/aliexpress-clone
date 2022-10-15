@@ -1,11 +1,19 @@
 import { useState, useEffect } from "react";
+const fetchSubcategories = require("../service/fetch.js").fetchSubcategories;
+const host = require("../constants").host;
 
-const useFetchSubcategories = (url) => {
+const useFetchSubcategories = (category) => {
+  const url = host + "/subcategories/" + category;
   const [subcategories, setSubcategories] = useState([]);
+  console.log(url);
+
   useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((subcategories) => setSubcategories(subcategories));
+    async function fetchData(){
+      const subcategories = await fetchSubcategories(url);
+      setSubcategories(subcategories);
+    }
+
+    fetchData();
   }, [url]);
   return [subcategories];
 };

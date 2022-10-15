@@ -16,6 +16,7 @@ mongoDb.connectToServer(function (err) {
   const subcategoryRouter = require("./routes/subcategories");
   const registerRouter = require("./routes/register");
   const signInRouter = require("./routes/signIn");
+  const searchRouter = require("./routes/search");
   app.use("/products", productsRouter);
   app.use("/categories", categoriesRouter);
   app.use("/product", productRouter);
@@ -23,6 +24,7 @@ mongoDb.connectToServer(function (err) {
   app.use("/subcategories", subcategoryRouter);
   app.use("/register", registerRouter);
   app.use("/signIn", signInRouter);
+  app.use("/search", searchRouter);
 
   //Handle 404
   app.use(function (req, res, next) {

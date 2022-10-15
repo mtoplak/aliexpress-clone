@@ -205,7 +205,12 @@ a {
 
 #results {
   display: inline-block;
-  margin: 8px 0 0 8px;
+  margin: 14px 0 0 8px;
+}
+
+.left{
+  float: right;
+  padding-right: 150px;
 }
 
 .is-active {
@@ -408,7 +413,7 @@ i {
   opacity: 0;
 }
 
-.modalBtn{
+.modalBtn {
   border: none;
   font-size: 20px;
   background-color: white;
@@ -416,8 +421,8 @@ i {
   padding-bottom: 4px;
 }
 
-.modalSubmit{
-  background: linear-gradient(90deg,#ff640e,#ff3000);;
+.modalSubmit {
+  background: linear-gradient(90deg, #ff640e, #ff3000);
   border-radius: 20px;
   border: none;
   width: 180px;
@@ -428,26 +433,51 @@ i {
   cursor: pointer;
 }
 
-.inputModal{
+.inputModal {
   width: 190px;
   height: 27px;
   border-radius: 5px;
   margin-top: 10px;
   margin-bottom: 10px;
-  padding: 4px
+  padding: 4px;
 }
 
-.currentTab{
+.currentTab {
   font-weight: bold;
   text-decoration: underline;
   text-decoration-color: #ff7539;
   text-underline-offset: 5px;
 }
 
-.warning{
+.warning {
   color: red;
   font-size: small;
   margin: 15px 0 15px;
   display: inline-block;
   font-weight: bold;
+}
+
+#back {
+  color: white;
+  background-color: #ff4747;
+  border-radius: 4px;
+  border: none;
+  height: 44px;
+  line-height: 44px;
+  padding: 0 40px;
+  font-weight: 400;
+  font-size: 14px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+#a404 {
+  background-color: #e8e8e8;
+  width: 90%;
+  border-radius: 8px;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 30px;
+  margin-top: 40px;
+  text-align: center;
 }

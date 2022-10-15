@@ -34,11 +34,11 @@ router.post("/", async function (req, res) {
             process.env.JWT_SECRET,
             { expiresIn: process.env.JWT_EXPIRE }
           );*/
-          console.log(token);
+          //console.log(token);
           return res.status(200).send({
             message: "Login Successful",
             email: user.email,
-            token,
+            //token,
           });
         } else {
           console.log("wrong password");

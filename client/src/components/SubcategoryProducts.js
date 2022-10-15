@@ -5,17 +5,16 @@ import useFetchSubcategories from "./useFetchSubcategories";
 import Header from "./Header";
 import SearchBar from "./SearchBar";
 import { useParams } from "react-router-dom";
+import SearchResult from "./SearchResult";
 
-const host = require('../constants').host;
 
 function SubcategoryProducts() {
   const params = useParams();
   const { subcategory } = params;
   const { category } = params;
-  const [products] = useFetchProductsFromCategory(`${host}/c/${subcategory}`);
-  const [subcategories] = useFetchSubcategories(
-    `${host}/subcategories/${category}`
-  );
+  const [products] = useFetchProductsFromCategory(subcategory);
+  const [subcategories] = useFetchSubcategories(category);
+  document.title = subcategory;
 
   return (
     <>
@@ -46,29 +45,11 @@ function SubcategoryProducts() {
         </div>
         <div id="results">
           {products.map((product, index) => (
-            <React.Fragment key={index}>
-              <div className="search-result">
-                <Link to={`/product/${product.productName}`}>
-                  <img
-                    className="image-results"
-                    src={product.imageUrl}
-                    alt={product.name}
-                  ></img>
-                  <figcaption className="result-caption">
-                    {product.productName}
-                  </figcaption>
-                  <span style={{ marginTop: "10px" }}>
-                    <span className="price">{product.price}€</span>
-                    <span style={{ color: "yellow", fontSize: "12px" }}>
-                      {"  "}
-                      <i className="fa-sharp fa-solid fa-star"></i>
-                    </span>{" "}
-                    {product.rating}
-                  </span>
-                </Link>
-              </div>
-              {(index + 1) % 5 === 0 && <br />}
-            </React.Fragment>
+            <SearchResult
+              product={product}
+              key={index}
+              breakLine={index}
+            ></SearchResult>
           ))}
         </div>
       </div>
