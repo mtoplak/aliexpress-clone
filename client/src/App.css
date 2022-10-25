@@ -244,6 +244,10 @@ a {
   width: 165px;
 }
 
+button{
+  cursor: pointer;
+}
+
 #addToWishList {
   height: 44px;
   background-color: white;
@@ -265,7 +269,6 @@ a {
   background: #f2f2f2;
   width: 24px;
   height: 24px;
-  cursor: pointer;
 }
 
 i {
@@ -372,7 +375,6 @@ i {
   border: none;
   background-color: #fff1f1;
   color: #ff4747;
-  cursor: pointer;
 }
 
 .mymodal {
@@ -417,7 +419,6 @@ i {
   border: none;
   font-size: 20px;
   background-color: white;
-  cursor: pointer;
   padding-bottom: 4px;
 }
 
@@ -430,7 +431,6 @@ i {
   font-weight: bold;
   color: white;
   font-size: 15px;
-  cursor: pointer;
 }
 
 .inputModal {
@@ -468,7 +468,6 @@ i {
   font-weight: 400;
   font-size: 14px;
   margin: 10px;
-  cursor: pointer;
 }
 
 #a404 {
@@ -480,4 +479,9 @@ i {
   padding: 30px;
   margin-top: 40px;
   text-align: center;
+}
+
+#productCategory{
+  margin: 15px;
+  font-size: 15px;
 }

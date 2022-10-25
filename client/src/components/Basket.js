@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import Header from "./Header";
 
 function Basket() {
   return (
-    <div>Basket</div>
-  )
+    <div>
+      <Header />
+    </div>
+  );
 }
 
-export default Basket
+export default Basket;

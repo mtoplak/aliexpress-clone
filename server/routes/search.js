@@ -16,7 +16,7 @@ router.get("/:slug", async function (req, res) {
       ],
     })
     .toArray();
-  res.send(result);
+    res.send(result);
 });
 
 module.exports = router;

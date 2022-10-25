@@ -4,10 +4,11 @@ import Header from "./Header";
 import SearchBar from "./SearchBar";
 import useFetchOneProduct from "./useFetchOneProduct";
 import AddToWishlist from "../assets/heart.svg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Rating from "./Rating";
+import { Link } from "react-router-dom";
 
-const host = require('../constants').host;
+const host = require("../constants").host;
 
 function Product() {
   const params = useParams();
@@ -21,21 +22,28 @@ function Product() {
 
   const handleIncrement = () => {
     if (quantity < product.quantityInStock) {
-      setQuantity(quantity + 1)
+      setQuantity(quantity + 1);
     }
-  }
+  };
 
   const handleDecrement = () => {
     if (quantity > 1) {
-      setQuantity(quantity - 1)
+      setQuantity(quantity - 1);
     }
-  }
+  };
   document.title = product.productName;
 
   return (
     <>
       <Header />
       <SearchBar />
+      {console.log(product.category)}
+      <div id="productCategory">
+        <Link to={`/${product.category}`}>{product.category + " > "}</Link>
+        <Link to={`/${product.category}/${product.subcategory}`}>
+          {product.subcategory}
+        </Link>
+      </div>
       <div style={{ display: "flex", flex: 1 }}>
         <div id="productOnPage">
           <img
@@ -59,8 +67,13 @@ function Product() {
           </div>
           <div className="detail"> Quantity: </div>
           <div className="detail" style={{ marginBottom: "18px" }}>
-            <button className="changeQuantity" onClick={handleDecrement}>-</button> {quantity}{" "}
-            <button className="changeQuantity" onClick={handleIncrement}>+</button>
+            <button className="changeQuantity" onClick={handleDecrement}>
+              -
+            </button>{" "}
+            {quantity}{" "}
+            <button className="changeQuantity" onClick={handleIncrement}>
+              +
+            </button>
           </div>
           <div>
             <button id="buyNow">Buy Now</button>
