@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Modal from "react-modal";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 //const jwt = require("jsonwebtoken");
+import { UserContext } from "../context/UserContext";
 
 const host = require("../constants").host;
 
@@ -13,18 +14,20 @@ function Header() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [warning, setWarning] = useState("");
   const [existingUser, setExistingUser] = useState("");
   const [signInWarning, setSignInWarning] = useState("");
 
+  const { user /*, setUser*/ } = useContext(UserContext);
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       //const user = jwt.decode(token);
-
     }
-  }, [])
+  }, []);
 
   const registerHandler = async (e) => {
     e.preventDefault();
@@ -38,6 +41,7 @@ function Header() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: email,
+          name: name,
           password: password,
           confirmPassword: confirmPassword,
         }),
@@ -47,29 +51,32 @@ function Header() {
       } else {
         setIsOpenSecond(false);
         setIsOpen(true);
-        //window.location.reload();
       }
     }
   };
 
   const signInHandler = async (e) => {
-    e.preventDefault();    
+    e.preventDefault();
     const response = await fetch(`${host}/signIn`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: document.forms['logIn'].email.value,
-        password: document.forms['logIn'].password.value,
+        email: document.forms["logIn"].email.value,
+        password: document.forms["logIn"].password.value,
       }),
     });
-    console.log(response);
-    console.log(response.status);
+    const data = await response.json();
+    console.log(data.email);
     if (response.status === 400) {
       setSignInWarning("Your account name or password is incorrect.");
     } else {
+      const userToSave = { email: data.email, name: data.name };
+      localStorage.setItem("user", JSON.stringify(userToSave));
+      //setUser(userToSave);
+      console.log(userToSave);
       window.location.reload();
     }
-  }
+  };
 
   function toggleModal() {
     setIsOpen(true);
@@ -86,24 +93,57 @@ function Header() {
     setIsOpenSecond(false);
   }
 
+  const signOut = async (e) => {
+    console.log("poklicana")
+    localStorage.removeItem("user");
+    window.location.reload();
+    };
+
   return (
     <React.Fragment>
       <div className="header">
         <span style={{ marginTop: "3px" }}>
-          <button id="wishList"><Link to="#"> Wish List</Link></button> |{" "}
+          <button id="wishList">
+            <Link to="/wishlist"> Wish List</Link>
+          </button>
+          |{" "}
           <span className="dropdown">
-            <button id="myAcc">My Account ˅</button>
-            <div className="dropdown-content">
-              Welcome to AliExpress!
-              <button id="registerDropdown" onClick={toggleModal2}>
-                <Link to="#" style={{ color: "white" }}>
-                  Register
-                </Link>
-              </button>
-              <button id="signInDropdown" onClick={toggleModal}>
-                Sign In
-              </button>
-            </div>
+            {user && user ? (
+              <>
+                <button className="myAcc">{JSON.parse(user).name} ˅</button>
+                <div className="dropdown-content">
+                  <span style={{ fontWeight: "bold", marginBottom: "15px" }}>
+                    Welcome back {JSON.parse(user).name}!
+                  </span>
+                  <button
+                    className="registerDropdown"
+                    style={{ marginTop: "10px" }}
+                    onClick={signOut}
+                  >
+                    Sign out
+                  </button>
+                  <Link to="#" style={{ marginBottom: "8px" }}>
+                    My orders
+                  </Link>
+                  <Link to="/wishlist">Wishlist</Link>
+                </div>
+              </>
+            ) : (
+              <>
+                <button className="myAcc">My Account ˅</button>
+                <div className="dropdown-content">
+                  Welcome to AliExpress!
+                  <button className="registerDropdown" onClick={toggleModal2}>
+                    <Link to="#" style={{ color: "white" }}>
+                      Register
+                    </Link>
+                  </button>
+                  <button id="signInDropdown" onClick={toggleModal}>
+                    Sign In
+                  </button>
+                </div>
+              </>
+            )}
           </span>
         </span>
       </div>
@@ -131,7 +171,7 @@ function Header() {
         <br />
         <form method="POST" name="logIn" onSubmit={signInHandler}>
           <input
-            type="text"
+            type="email"
             placeholder="Email"
             name="email"
             className="inputModal"
@@ -175,6 +215,14 @@ function Header() {
         <form method="POST" onSubmit={registerHandler}>
           <input
             type="text"
+            placeholder="First name"
+            name="name"
+            className="inputModal"
+            style={{ borderRadius: "5px" }}
+            onChange={(e) => setName(e.target.value)}
+          ></input>
+          <input
+            type="text"
             placeholder="Email address"
             name="email"
             className="inputModal"
@@ -182,7 +230,9 @@ function Header() {
             onChange={(e) => setEmail(e.target.value)}
           ></input>
           <br />
-          <span className="warning" style={{margin: 0}}>{existingUser}</span>
+          <span className="warning" style={{ margin: 0 }}>
+            {existingUser}
+          </span>
           <input
             type="password"
             placeholder="Password"

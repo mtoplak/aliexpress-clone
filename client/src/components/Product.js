@@ -37,7 +37,6 @@ function Product() {
     <>
       <Header />
       <SearchBar />
-      {console.log(product.category)}
       <div id="productCategory">
         <Link to={`/${product.category}`}>{product.category + " > "}</Link>
         <Link to={`/${product.category}/${product.subcategory}`}>

@@ -17,6 +17,7 @@ router.post("/", function (req, res) {
         db.collection("users").insertOne(
           {
             email: req.body.email,
+            name: req.body.name,
             password: hashedPass,
             dateJoined: Date(),
           },

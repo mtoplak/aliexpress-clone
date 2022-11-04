@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 
 const host = require("../constants").host;
 
-const useFetchQuery = (query) => {
-  const [products, setProducts] = useState([]); //null
+const useFetchQuery = () => {
+  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
+  const { search } = window.location;
+  const query = new URLSearchParams(search).get("q");
   const url = host + "/search/" + query;
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setIsLoading] = useState(true);
   const [relatedCategories, setRelatedCategories] = useState(null);
   const [subcategories, setSubcategories] = useState([]);
 
@@ -16,7 +18,7 @@ const useFetchQuery = (query) => {
     fetch(url)
       .then((res) => res.json())
       .then((products) => {
-        setLoading(true);
+        setIsLoading(true);
 
         let relatedCategories = [];
         for (let i = 0; i < products.length; i++) {
@@ -26,22 +28,34 @@ const useFetchQuery = (query) => {
         }
 
         setRelatedCategories(relatedCategories);
+        console.log(relatedCategories);
         let subcategoriesArray = [];
+
+        console.log(subcategoriesArray);
         for (let i = 0; i < relatedCategories.length; i++) {
-          fetch(`${host}/subcategories/${relatedCategories[i]}`)
-            .then((res) => res.json())
-            .then((subcategories) => {
-              subcategoriesArray[i] = subcategories;
-            });
+          let subcategoriesOfOneCategory = [];
+          Promise.all([
+            fetch(`${host}/subcategories/${relatedCategories[i]}`)
+              .then((res) => res.json())
+              .then((subcategories) => {
+                console.log(subcategories);
+                subcategoriesOfOneCategory.push(subcategories);
+                console.log("pushed");
+                subcategoriesArray.push(subcategoriesOfOneCategory);
+                console.log("second push");
+                return subcategoriesArray;
+              }),
+          ]).then((data) => {
+            console.log(data);
+            setSubcategories(subcategoriesArray);
+          });
         }
-        setSubcategories(subcategoriesArray);
         setProducts(products);
       });
-    setLoading(false);
+    setIsLoading(false);
   }, [url, navigate]);
 
   return [products, loading, relatedCategories, subcategories];
-  
 };
 
 export default useFetchQuery;

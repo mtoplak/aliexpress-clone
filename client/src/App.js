@@ -1,17 +1,40 @@
 import "./App.css";
-import Header from "./components/Header";
-import SearchBar from "./components/SearchBar";
-import HomeSection from "./components/HomeSection";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Product from "./components/Product";
+import CategoryProducts from "./components/CategoryProducts";
+import SubcategoryProducts from "./components/SubcategoryProducts";
+import SearchResults from "./components/SearchResults";
+import Basket from "./components/Basket";
+import NoPage from "./components/NoPage";
+import WishList from "./components/WishList";
+import { UserContext } from "./context/UserContext.js";
+import HomeScreen from "./components/HomeScreen";
+import { useState, useMemo } from "react";
 
-//this is HomeScreen
 function App() {
-  document.title = "AliExpress - Online Shopping for Popular Electronics, Fashion, Home & Garden, Toys & Sports, Automobiles and More.";
+  const [user, setUser] = useState(localStorage.getItem("user") || null);
+  const value = useMemo(() => ({ user, setUser }), [user, setUser]);
+
+  console.log(user);
+
   return (
-    <div>
-      <Header />
-      <SearchBar />
-      <HomeSection />
-    </div>
+    <BrowserRouter>
+      <UserContext.Provider value={value}>
+        <Routes>
+          <Route path="/" element={<HomeScreen />} />
+          <Route path="/product/:slug" element={<Product />} />
+          <Route path="/search" element={<SearchResults />} />
+          <Route path="/:category" element={<CategoryProducts />} />
+          <Route
+            path="/:category/:subcategory"
+            element={<SubcategoryProducts />}
+          />
+          <Route path="/wishlist" element={<WishList />} />
+          <Route path="/basket" element={<Basket />} />
+          <Route path="/404" element={<NoPage />} />
+        </Routes>
+      </UserContext.Provider>
+    </BrowserRouter>
   );
 }
 

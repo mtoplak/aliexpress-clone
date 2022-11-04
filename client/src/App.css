@@ -208,7 +208,7 @@ a {
   margin: 14px 0 0 8px;
 }
 
-.left{
+.left {
   float: right;
   padding-right: 150px;
 }
@@ -244,7 +244,7 @@ a {
   width: 165px;
 }
 
-button{
+button {
   cursor: pointer;
 }
 
@@ -312,7 +312,7 @@ i {
   margin-left: 5px;
 }
 
-#myAcc {
+.myAcc {
   border: none;
   background-color: rgb(200, 200, 200);
 }
@@ -328,7 +328,7 @@ i {
 }
 
 .dropdown-content {
-  padding: 10px;
+  padding: 20px;
   display: none;
   position: absolute;
   background-color: white;
@@ -352,7 +352,7 @@ i {
   background-color: white;
 }
 
-#registerDropdown {
+.registerDropdown {
   background-color: #ff4747;
   color: #fff;
   border-radius: 2px;
@@ -481,7 +481,31 @@ i {
   text-align: center;
 }
 
-#productCategory{
+#productCategory {
   margin: 15px;
   font-size: 15px;
+}
+
+#wishlist {
+  background-color: rgb(218, 218, 218);
+  min-height: 600px;
+  padding: 30px;
+}
+
+#wishlist_h {
+  font-weight: bold;
+  font-size: 35px;
+  margin: 40px;
+}
+
+#list {
+  margin: 40px;
+}
+
+.gradient-border-bg {
+  background: linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(180deg, rgba(219, 46, 16, 1) 0%, rgba(255, 201, 3, 1) 100%)
+      border-box;
+  border: 5px solid transparent;
+  border-radius: 50px;
 }
