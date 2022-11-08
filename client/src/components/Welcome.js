@@ -92,7 +92,7 @@ function Welcome() {
         style={{ position: "relative" }}
         className={user ? "gradient-border-bg" : ""}
       >
-        {user && user ? (
+        {user ? (
           <div
             style={{
               position: "absolute",
@@ -101,7 +101,7 @@ function Welcome() {
               transform: "translate(-50%,-50%)",
             }}
           >
-            Welcome to Aliexpress, {JSON.parse(user).name}🎉
+            Welcome to Aliexpress, {user.name}🎉
           </div>
         ) : (
           <>

@@ -4,9 +4,11 @@ import Header from "./Header";
 import SearchBar from "./SearchBar";
 import useFetchOneProduct from "./useFetchOneProduct";
 import AddToWishlist from "../assets/heart.svg";
-import { useState } from "react";
+import AddedToWishlist from "../assets/heart-solid.svg";
+import { useState, useContext, useEffect } from "react";
 import Rating from "./Rating";
 import { Link } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 const host = require("../constants").host;
 
@@ -15,10 +17,8 @@ function Product() {
   const { slug } = params;
   const [product] = useFetchOneProduct(`${host}/product/${slug}`);
   const [quantity, setQuantity] = useState(1);
-  /*
-  useEffect(() => {
-    document.title = product.productName;
-  });*/
+  const [isOnWishlist, setIsOnWishlist] = useState(false);
+  const { user /*, setUser*/ } = useContext(UserContext);
 
   const handleIncrement = () => {
     if (quantity < product.quantityInStock) {
@@ -31,6 +31,57 @@ function Product() {
       setQuantity(quantity - 1);
     }
   };
+
+  useEffect(() => {
+    //check if product is already on wishlist
+    async function fetchData() {
+      const response = await fetch(`${host}/user`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user: user,
+          product: product._id,
+        }),
+      });
+      const data = await response.json();
+      if (data.msg === "found") {
+        setIsOnWishlist(true);
+      } else {
+        setIsOnWishlist(false);
+      }
+    }
+    if (user && product) {
+      fetchData();
+    }
+  }, [product, user]);
+
+  const wishlistHandler = async () => {
+    if (user) {
+      setIsOnWishlist(!isOnWishlist);
+    }
+    if (isOnWishlist) {
+      fetch(`${host}/wishlist`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "remove",
+          product: product._id,
+          email: user.email,
+        }),
+      });
+    } else {
+      await fetch(`${host}/wishlist`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "add",
+          product: product._id,
+          email: user.email,
+        }),
+      });
+    }
+  };
+
   document.title = product.productName;
 
   return (
@@ -77,10 +128,10 @@ function Product() {
           <div>
             <button id="buyNow">Buy Now</button>
             <button id="addToCart">Add To Cart</button>
-            <button id="addToWishList">
+            <button id="addToWishList" onClick={() => wishlistHandler()}>
               <img
-                style={{ width: "15px", height: "15px" }}
-                src={AddToWishlist}
+                style={{ width: "22px", height: "15px" }}
+                src={isOnWishlist ? AddedToWishlist : AddToWishlist}
                 alt="add to wishlist"
               ></img>
             </button>

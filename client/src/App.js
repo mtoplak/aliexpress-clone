@@ -12,7 +12,7 @@ import HomeScreen from "./components/HomeScreen";
 import { useState, useMemo } from "react";
 
 function App() {
-  const [user, setUser] = useState(localStorage.getItem("user") || null);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || null);
   const value = useMemo(() => ({ user, setUser }), [user, setUser]);
 
   console.log(user);

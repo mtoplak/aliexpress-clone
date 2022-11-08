@@ -94,10 +94,9 @@ function Header() {
   }
 
   const signOut = async (e) => {
-    console.log("poklicana")
     localStorage.removeItem("user");
     window.location.reload();
-    };
+  };
 
   return (
     <React.Fragment>
@@ -108,12 +107,12 @@ function Header() {
           </button>
           |{" "}
           <span className="dropdown">
-            {user && user ? (
+            {user ? (
               <>
-                <button className="myAcc">{JSON.parse(user).name} ˅</button>
+                <button className="myAcc">{user.name} ˅</button>
                 <div className="dropdown-content">
                   <span style={{ fontWeight: "bold", marginBottom: "15px" }}>
-                    Welcome back {JSON.parse(user).name}!
+                    Welcome back {user.name}!
                   </span>
                   <button
                     className="registerDropdown"
