@@ -78,16 +78,6 @@ function Header() {
     }
   };
 
-  function toggleModal() {
-    setIsOpen(true);
-    setIsOpenSecond(false);
-  }
-
-  function toggleModal2() {
-    setIsOpenSecond(true);
-    setIsOpen(false);
-  }
-
   function close() {
     setIsOpen(false);
     setIsOpenSecond(false);
@@ -132,12 +122,24 @@ function Header() {
                 <button className="myAcc">My Account ˅</button>
                 <div className="dropdown-content">
                   Welcome to AliExpress!
-                  <button className="registerDropdown" onClick={toggleModal2}>
+                  <button
+                    className="registerDropdown"
+                    onClick={() => {
+                      setIsOpenSecond(true);
+                      setIsOpen(false);
+                    }}
+                  >
                     <Link to="#" style={{ color: "white" }}>
                       Register
                     </Link>
                   </button>
-                  <button id="signInDropdown" onClick={toggleModal}>
+                  <button
+                    id="signInDropdown"
+                    onClick={() => {
+                      setIsOpen(true);
+                      setIsOpenSecond(false);
+                    }}
+                  >
                     Sign In
                   </button>
                 </div>
@@ -162,7 +164,13 @@ function Header() {
         <br />
         <div>
           <button className="modalBtn currentTab">Sign in </button>{" "}
-          <button onClick={toggleModal2} className="modalBtn">
+          <button
+            onClick={() => {
+              setIsOpenSecond(true);
+              setIsOpen(false);
+            }}
+            className="modalBtn"
+          >
             {" "}
             Register
           </button>
@@ -205,7 +213,13 @@ function Header() {
         </button>
         <br />
         <div>
-          <button onClick={toggleModal} className="modalBtn">
+          <button
+            onClick={() => {
+              setIsOpen(true);
+              setIsOpenSecond(false);
+            }}
+            className="modalBtn"
+          >
             Sign in{" "}
           </button>{" "}
           <button className="modalBtn currentTab"> Register</button>

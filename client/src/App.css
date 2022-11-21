@@ -393,6 +393,22 @@ i {
   text-align: center;
 }
 
+.mymodal1 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 450px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ccc;
+  background: #fff;
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 40px;
+  text-align: center;
+}
+
 .myoverlay {
   position: fixed;
   top: 0;
@@ -549,4 +565,25 @@ i {
   width: 100px;
   padding: 8px;
   font-weight: 600;
+}
+
+#continue{
+  width: 200px;
+  border-color: red;
+  color: red;
+  background-color: white;
+  height: 35px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+#viewCart{
+  color: white;
+  width: 200px;
+  background-color: red;
+  margin: 15px 10px;
+  height: 35px;
+  border-radius: 20px;
+  font-size: 14px;
+  border: none;
 }

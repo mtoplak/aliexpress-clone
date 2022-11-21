@@ -70,16 +70,6 @@ function Welcome() {
     }
   };
 
-  function toggleModal() {
-    setIsOpen(true);
-    setIsOpenSecond(false);
-  }
-
-  function toggleModal2() {
-    setIsOpenSecond(true);
-    setIsOpen(false);
-  }
-
   function close() {
     setIsOpen(false);
     setIsOpenSecond(false);
@@ -107,12 +97,24 @@ function Welcome() {
           <>
             Welcome to Aliexpress
             <div style={{ marginTop: "30px" }}>
-              <button id="registerBtn" onClick={toggleModal2}>
+              <button
+                id="registerBtn"
+                onClick={() => {
+                  setIsOpenSecond(true);
+                  setIsOpen(false);
+                }}
+              >
                 <Link to={`/`} style={{ color: "white" }}>
                   Register
                 </Link>
               </button>{" "}
-              <button id="signInBtn" onClick={toggleModal}>
+              <button
+                id="signInBtn"
+                onClick={() => {
+                  setIsOpen(true);
+                  setIsOpenSecond(false);
+                }}
+              >
                 <Link to={`/`}>Sign In</Link>
               </button>
             </div>
@@ -134,7 +136,13 @@ function Welcome() {
         <br />
         <div>
           <button className="modalBtn currentTab">Sign in </button>{" "}
-          <button onClick={toggleModal2} className="modalBtn">
+          <button
+            onClick={() => {
+              setIsOpenSecond(true);
+              setIsOpen(false);
+            }}
+            className="modalBtn"
+          >
             {" "}
             Register
           </button>
@@ -177,7 +185,13 @@ function Welcome() {
         </button>
         <br />
         <div>
-          <button onClick={toggleModal} className="modalBtn">
+          <button
+            onClick={() => {
+              setIsOpen(true);
+              setIsOpenSecond(false);
+            }}
+            className="modalBtn"
+          >
             Sign in{" "}
           </button>{" "}
           <button className="modalBtn currentTab"> Register</button>

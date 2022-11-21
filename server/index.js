@@ -20,6 +20,7 @@ mongoDb.connectToServer(function (err) {
   const wishlistRouter = require("./routes/wishlist");
   const userRouter = require("./routes/user");
   const wishlistProductsRouter = require("./routes/wishlistProducts");
+  const cartRouter = require("./routes/cart");
   app.use("/products", productsRouter);
   app.use("/categories", categoriesRouter);
   app.use("/product", productRouter);
@@ -31,6 +32,7 @@ mongoDb.connectToServer(function (err) {
   app.use("/wishlist", wishlistRouter);
   app.use("/user", userRouter);
   app.use('/wishlistProducts', wishlistProductsRouter);
+  app.use('/cart', cartRouter);
 
   //Handle 404
   app.use(function (req, res, next) {
