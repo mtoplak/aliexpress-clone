@@ -77,7 +77,7 @@ router.post("/", async function (req, res) {
             .collection("users")
             .updateOne(
               { email: userToUpdate },
-              { $set: { [`cart.${indexInDb}.quantity`]: productQuantity } },
+              { $set: { [`cart.${indexInDb}.quantity`]: productQuantity } }
             );
           console.log(result);
         } else {
@@ -87,18 +87,14 @@ router.post("/", async function (req, res) {
       res.sendStatus(200);
       break;
 
-    /*
     case "getAll":
       console.log(req.body);
       let allProducts = await db
         .collection("users")
-        .findOne(
-          { email: userToUpdate },
-          { projection: { _id: 0, wishlistItems: 1 } }
-        );
+        .findOne({ email: userToUpdate }, { projection: { _id: 0, cart: 1 } });
       console.log(allProducts);
       res.send(allProducts);
-      break;*/
+      break;
   }
 });
 

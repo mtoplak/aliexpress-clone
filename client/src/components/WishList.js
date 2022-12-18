@@ -21,7 +21,7 @@ function WishList() {
   const [signInWarning, setSignInWarning] = useState("");
   const [wishlistItems, setWishlistItems] = useState();
 
-  document.title = "Aliexpress - My wish list";
+  document.title = "My wish list - Aliexpress";
 
   useEffect(() => {
     fetch(`${host}/wishlist`, {

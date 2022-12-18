@@ -502,13 +502,13 @@ i {
   font-size: 15px;
 }
 
-#wishlist {
+#wishlist, #cart {
   background-color: rgb(218, 218, 218);
   min-height: 600px;
   padding: 30px;
 }
 
-.wishlist_h {
+.wishlist_h, .cart_h {
   font-weight: bold;
   font-size: 35px;
   margin: 40px;
