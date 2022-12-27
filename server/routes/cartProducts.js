@@ -21,10 +21,10 @@ router.post("/", async function (req, res) {
   console.log(ids);
   db.collection("products")
     .find({ _id: { $in: ids } })
+    .sort({ _id: 1 })
     .toArray(function (err, result) {
       if (err) throw err;
       console.log("result: ");
-      //console.log(result);
       result.forEach((element, index) => {
         element.price = element.price.toString();
         element.price = element.price.replace(".", ",");

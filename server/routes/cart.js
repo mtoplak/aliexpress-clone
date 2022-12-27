@@ -7,9 +7,6 @@ const ObjectId = require("mongodb").ObjectId;
 router.post("/", async function (req, res) {
   //console.log(req.body);
   let userToUpdate = req.body.email;
-  let query = {
-    cart: { product: ObjectId(req.body.product), quantity: req.body.quantity },
-  };
   let check = {
     product: ObjectId(req.body.product),
     //quantity: {$in: [0, 1000]}
@@ -22,22 +19,31 @@ router.post("/", async function (req, res) {
   const productId = req.body.product;
   const productQuantity = req.body.quantity;
 
+  let query;
+  console.log(req.body);
+
   switch (req.body.action) {
-    /*
     case "remove":
+      query = { cart: { product: ObjectId(req.body.product) } };
       var result = await db
         .collection("users")
         .updateOne({ email: userToUpdate }, { $pull: query });
       //console.log(result);
       console.log("removed");
       res.sendStatus(200);
-      break;*/
+      break;
     case "addOrUpdate":
-      //check if the product is in the cart (any quantity)
+      // check if the product is in the cart (any quantity)
       const count = await db.collection("users").countDocuments({
         email: userToUpdate,
         "cart.product": { $in: [ObjectId(productId)] },
       });
+      query = {
+        cart: {
+          product: ObjectId(req.body.product),
+          quantity: req.body.quantity,
+        },
+      };
       console.log("count: ");
       console.log(count);
       if (count == 0) {
@@ -49,11 +55,12 @@ router.post("/", async function (req, res) {
         console.log("added to cart");
       } else {
         console.log("is already in cart");
-        //check if the quantity is the same
+        // check if the quantity is the same
         const count2 = await db.collection("users").countDocuments({
           email: userToUpdate,
-          "cart.quantity": { $in: [productQuantity] },
+          "cart.quantity": req.body.quantity, // { $in: [productQuantity] }
         });
+        console.log(".........");
         console.log(count2);
         if (count2 == 0) {
           console.log("update quantity");
@@ -81,7 +88,8 @@ router.post("/", async function (req, res) {
             );
           console.log(result);
         } else {
-          //has the same quantity
+          console.log("quantity is the same");
+          // has the same quantity
         }
       }
       res.sendStatus(200);
@@ -92,6 +100,9 @@ router.post("/", async function (req, res) {
       let allProducts = await db
         .collection("users")
         .findOne({ email: userToUpdate }, { projection: { _id: 0, cart: 1 } });
+      allProducts.cart.sort((a, b) =>
+        a.product > b.product ? 1 : b.product > a.product ? -1 : 0
+      );
       console.log(allProducts);
       res.send(allProducts);
       break;

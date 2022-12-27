@@ -10,9 +10,16 @@ import { Link } from "react-router-dom";
 function SearchResults() {
   const { search } = window.location;
   const query = new URLSearchParams(search).get("q");
-  const [products, loading, relatedCategories, subcategories] = useFetchQuery();
+  const [products, loading, relatedCategories, subcategories, allCategories] =
+    useFetchQuery();
   console.log(subcategories);
-  console.log(subcategories[1]); /*
+  console.log(allCategories); // related categories and subcategories
+  /*
+  for (let i = 0; i < allCategories.length; i++) {
+    console.log(allCategories[i].subcategories);
+  }*/
+  //console.log(subcategories[1]);
+  /*
   for (let i = 0; i < subcategories.length; i++) {
     for (let j = 0; j < subcategories[i].length; j++) {
       if (subcategories[i].includes(undefined)) {
@@ -52,59 +59,31 @@ function SearchResults() {
           <div style={{ fontWeight: "bold" }}>Related Categories</div>
         )}
         <div id="subcategories">
-          {subcategories &&
-            relatedCategories &&
-            relatedCategories.map((category, index) => (
-              <div key={index}>
-                <Link to={`/${category}`}>
-                  <strong>{category}</strong>
-                </Link>
-                <br />
-                {console.log("index: " + index)}
-                {/*subcategories.map((subcategory, i) => (
-                  <>
+          {allCategories &&
+            allCategories?.map((category, index) => {
+              return (
+                <div key={index}>
+                  <Link to={`/${category.category}`}>
+                    <strong>{category.category}</strong>
+                  </Link>
+                  {console.log(category.subcategories)}
+                  {/*izpiše prav ^*/}
+                  {category.subcategories?.map((subcategory, index) => (
                     <div key={index}>
-                      <div>sub: {subcategories[i][index]}</div>
+                      {/*category.subcategories je undefined ˘˘*/}
+                      {/*category.subcategories}
+                      {subcategory*/}
+                      {/*ne izpiše prav drugih podaktegorij*/}
                     </div>
-                    <br />
-                  </>
-                ))*/}
-                {/*subcategories.map((row, indexNovi) =>
-                  subcategories.map((column, indexNovejsi) => subcategories[indexNovi][indexNovejsi])
-              )/*column[index]*/}
-                {/*subcategories.map((subcategories, index, arr) => (arr[index]))*/}
-                {console.log(resultsRender[index])}
-                {console.log("subkategorije: " + subcategories[index])}
-                {/*subcategories[index]*/}
-                {/*subcategories[1]*/}
-                {console.log(resultsRender)}
-                {/*resultsRender.map((subcategories, index) =>
-                    subcategories.map((subcategory, nexIndex) => (
-                      <li key={nexIndex}>{resultsRender}</li>
-                    ))
-                    )*/}
-                {resultsRender.map((items, index) => {
-                  return (
-                    <div key={items}>
-                      {items.map((subItems, sIndex) => {
-                        return <div> {subItems} </div>;
-                      })}
-                    </div>
-                  );
-                })}
-                {console.log(resultsRender[1])}
-              </div>
-            ))}
+                  ))}
+                  {console.log(category.subcategories)}
+                  {category[subcategories]?.map((subcategory, index) => (
+                    <>ne izpiše</>
+                  ))}
+                </div>
+              );
+            })}
         </div>
-        {resultsRender.map((items, index) => {
-          return (
-            <div key={items}>
-              {items.map((subItems, sIndex) => {
-                return <div> {subItems} </div>;
-              })}
-            </div>
-          );
-        })}
       </div>
       <div id="results" className="left">
         {products.length !== 0 ? (

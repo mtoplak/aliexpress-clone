@@ -186,8 +186,8 @@ function Product() {
         >
           <i style={{ color: "black" }} className="fa-solid fa-xmark"></i>
         </button>
-        <i className="fa-solid fa-check" style={{ color: "green" }}></i> A new item
-        has been added to your Shopping Cart.
+        <i className="fa-solid fa-check" style={{ color: "green" }}></i>
+        A new item has been added to your Shopping Cart.
         <br />
         <button id="viewCart" onClick={() => navigateCart()}>
           View Shopping Cart

@@ -4,6 +4,7 @@ import SearchBar from "./SearchBar";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/UserContext";
 import { Link } from "react-router-dom";
+import ReactModal from "react-modal";
 
 const host = require("../constants").host;
 
@@ -19,6 +20,10 @@ function Basket() {
   const [existingUser, setExistingUser] = useState("");
   const [signInWarning, setSignInWarning] = useState("");
   const [cartItems, setCartItems] = useState();
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [summary, setSummary] = useState([]);
+  const [isAdded, setIsAdded] = useState(false); // add to wishlist
+  const [selectAll, setSelectAll] = useState(false);
 
   document.title = "Shopping Cart - Aliexpress";
 
@@ -86,9 +91,120 @@ function Basket() {
     setIsOpenSecond(false);
   }
 
-  const changeItemQuantity = () => {
-    console.log("changeItemQuantity");
-  }
+  const changeItemQuantity = async (id, newValue) => {
+    console.log(newValue);
+    await fetch(`${host}/cart`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        action: "addOrUpdate",
+        product: id,
+        quantity: newValue,
+        email: user.email,
+      }),
+    });
+    window.location.reload();
+  };
+
+  const deleteFromCart = (id) => {
+    fetch(`${host}/cart`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        action: "remove",
+        product: id,
+        email: user.email,
+      }),
+    });
+    window.location.reload();
+  };
+
+  const addToWishList = async (id) => {
+    await fetch(`${host}/wishlist`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        action: "add",
+        product: id,
+        email: user.email,
+      }),
+    });
+    setIsAdded(true);
+  };
+
+  const summaryHandler = (id, quantity, price, fromAll) => {
+    console.log("calling summary");
+    let sum;
+    if (!fromAll) {
+      for (let i = 0; i < summary.length; i++) {
+        // remove item from summary
+        if (summary[i].id === id) {
+          summary.splice(i, 1);
+          setSummary([...summary]);
+          sum = summary.reduce(function (acc, obj) {
+            return acc + parseFloat(obj.price.replace(",", ".") * obj.quantity);
+          }, 0);
+          setTotalPrice(sum);
+          console.log(totalPrice);
+          setSelectAll(false);
+          return;
+        }
+      }
+    }
+    // add item to summary
+    summary.push({ id: id, quantity: quantity, price: price });
+    sum = summary.reduce(function (acc, obj) {
+      return acc + parseFloat(obj.price.replace(",", ".") * obj.quantity);
+    }, 0);
+    setTotalPrice(sum);
+    setSummary([...summary]);
+    console.log(summary);
+  };
+
+  const selectAllHandler = () => {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    console.log(selectAll);
+    setSummary([]);
+
+    if (selectAll) {
+      // deselect all
+      for (let i = 0; i < checkboxes.length - 1; i++) {
+        checkboxes[i].checked = false;
+      }
+      setSummary([]);
+      setTotalPrice(0);
+    } else {
+      // select all
+      setSummary([]);
+      console.log(summary);
+
+      for (let i = 0; i < checkboxes.length - 1; i++) {
+        checkboxes[i].checked = true;
+      }
+      // first deselect all
+      for (let i = 0; i < summary.length; i++) {
+        summary.pop();
+      }
+
+      for (let i = 0; i < summary.length; i++) {
+        console.log(summary[i]);
+      }
+
+      // then add all
+      for (let i = 0; i < cartItems.length; i++) {
+        console.log(cartItems[i]._id);
+        console.log(cartItems[i].myQuantity);
+        console.log(cartItems[i].price);
+        summaryHandler(
+          cartItems[i]._id,
+          cartItems[i].myQuantity,
+          cartItems[i].price,
+          true
+        );
+      }
+    }
+    setSelectAll(!selectAll);
+  };
 
   useEffect(() => {
     fetch(`${host}/cart`, {
@@ -125,10 +241,12 @@ function Basket() {
     <div>
       <Header />
       <SearchBar />
-      <div id="cart">
+      <div id="cart" style={{ height: "100%" }}>
         {user ? (
           <>
-            <div className="cart_h">Shopping cart ({cartItems && cartItems.length})</div>
+            <div className="cart_h">
+              Shopping cart ({cartItems && cartItems.length})
+            </div>
             <div style={{ float: "right", marginRight: "90px" }}>
               {cartItems &&
                 cartItems.length > 0 &&
@@ -141,7 +259,6 @@ function Basket() {
                         src={item.imageUrl}
                       ></img>
                     </Link>
-
                     <span className="is-active wishlist_cap">
                       <Link to={`/product/${item.productName}`}>
                         {item.productName}
@@ -157,9 +274,25 @@ function Basket() {
                           marginTop: "50px",
                         }}
                       >
-                        <button className="changeQuantity" onClick={() => changeItemQuantity()} style={{backgroundColor: "rgb(218, 218, 218)"}}>-</button>{" "}
+                        <button
+                          className="changeQuantity"
+                          onClick={() =>
+                            changeItemQuantity(item._id, item.myQuantity - 1)
+                          }
+                          style={{ backgroundColor: "rgb(218, 218, 218)" }}
+                        >
+                          -
+                        </button>{" "}
                         {item.myQuantity}{" "}
-                        <button className="changeQuantity" onClick={() => changeItemQuantity()} style={{backgroundColor: "rgb(218, 218, 218)"}}>+</button>
+                        <button
+                          className="changeQuantity"
+                          onClick={() =>
+                            changeItemQuantity(item._id, item.myQuantity + 1)
+                          }
+                          style={{ backgroundColor: "rgb(218, 218, 218)" }}
+                        >
+                          +
+                        </button>
                       </div>
                     </span>
 
@@ -167,7 +300,7 @@ function Basket() {
                       <button
                         style={{ display: "block" }}
                         className="wishlist_btn"
-                        onClick={() => console.log()}
+                        onClick={() => addToWishList(item._id)}
                       >
                         Add to wishlist{" "}
                       </button>
@@ -178,11 +311,36 @@ function Basket() {
                           float: "right",
                           verticalAlign: "middle",
                         }}
+                        onChange={() =>
+                          summaryHandler(item._id, item.myQuantity, item.price)
+                        }
                       />
-                      <button className="wishlist_btn">Delete</button>
+                      <button
+                        className="wishlist_btn"
+                        onClick={() => deleteFromCart(item._id)}
+                      >
+                        Delete
+                      </button>
                     </div>
                   </div>
                 ))}
+              <div>
+                <input
+                  type="checkbox"
+                  id="selectall"
+                  name="fav_language"
+                  checked={selectAll}
+                  onChange={() => selectAllHandler()}
+                />
+                <label htmlFor="selectall">Select all products</label>
+              </div>
+            </div>
+            <div>
+              <h2>Summary</h2>
+              Total: {totalPrice.toFixed(2)} €
+              <br />
+              <br />
+              <button id="checkout">Checkout</button>
             </div>
           </>
         ) : (
@@ -199,6 +357,32 @@ function Basket() {
           </div>
         )}
       </div>
+      <ReactModal
+        isOpen={isAdded}
+        onRequestClose={() => setIsAdded(false)}
+        contentLabel="My dialog"
+        className="mymodal1"
+        overlayClassName="myoverlay"
+        closeTimeoutMS={300}
+        ariaHideApp={false}
+      >
+        <button
+          onClick={() => setIsAdded(false)}
+          style={{ float: "right" }}
+          className="modalBtn"
+        >
+          <i style={{ color: "black" }} className="fa-solid fa-xmark"></i>
+        </button>
+        <i className="fa-solid fa-check" style={{ color: "green" }}></i>
+        {"  "}Succesfully added to your wishlist.
+        <br />
+        <Link to={"/wishlist"}>
+          <button id="viewCart">View wishlist</button>
+        </Link>
+        <button id="continue" onClick={() => setIsAdded(false)}>
+          Continue Shopping
+        </button>
+      </ReactModal>
     </div>
   );
 }

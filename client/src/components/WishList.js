@@ -5,6 +5,7 @@ import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/UserContext";
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
+import ReactModal from "react-modal";
 
 const host = require("../constants").host;
 
@@ -20,6 +21,9 @@ function WishList() {
   const [existingUser, setExistingUser] = useState("");
   const [signInWarning, setSignInWarning] = useState("");
   const [wishlistItems, setWishlistItems] = useState();
+  const [isAdded, setIsAdded] = useState(false); // add to cart
+
+  console.log(wishlistItems);
 
   document.title = "My wish list - Aliexpress";
 
@@ -127,6 +131,21 @@ function WishList() {
     window.location.reload();
   };
 
+  const cartHandler = async (id) => {
+    await fetch(`${host}/cart`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        action: "addOrUpdate",
+        product: id,
+        quantity: 1,
+        email: user.email,
+      }),
+    });
+    setIsAdded(true);
+    console.log("added to cart");
+  };
+
   return (
     <>
       <Header />
@@ -163,9 +182,9 @@ function WishList() {
                       <button
                         style={{ display: "block" }}
                         className="wishlist_btn"
-                        onClick={() => console.log()}
+                        onClick={() => cartHandler(product._id)}
                       >
-                        Move to cart{" "}
+                        Add to cart{" "}
                       </button>
                       <button
                         className="wishlist_btn"
@@ -300,6 +319,32 @@ function WishList() {
           </button>
         </form>
       </Modal>
+      <ReactModal
+        isOpen={isAdded}
+        onRequestClose={() => setIsAdded(false)}
+        contentLabel="My dialog"
+        className="mymodal1"
+        overlayClassName="myoverlay"
+        closeTimeoutMS={300}
+        ariaHideApp={false}
+      >
+        <button
+          onClick={() => setIsAdded(false)}
+          style={{ float: "right" }}
+          className="modalBtn"
+        >
+          <i style={{ color: "black" }} className="fa-solid fa-xmark"></i>
+        </button>
+        <i className="fa-solid fa-check" style={{ color: "green" }}></i>
+        {"  "}Succesfully added to cart.
+        <br />
+        <Link to={"/basket"}>
+          <button id="viewCart">View cart</button>
+        </Link>
+        <button id="continue" onClick={() => setIsAdded(false)}>
+          Continue Shopping
+        </button>
+      </ReactModal>
     </>
   );
 }
