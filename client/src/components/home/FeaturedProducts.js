@@ -1,6 +1,6 @@
 import React from "react";
 import FeaturedProduct from "./FeaturedProduct";
-import useFetchProducts from "./useFetchProducts";
+import useFetchProducts from "../../services/useFetchProducts";
 
 
 function FeaturedProducts() {

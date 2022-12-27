@@ -1,8 +1,8 @@
 import React from "react";
-import Header from "./Header";
-import SearchBar from "./SearchBar";
+import Header from "../layout/Header";
+import SearchBar from "../layout/SearchBar";
 import SearchResult from "./SearchResult";
-import useFetchQuery from "./useFetchQuery";
+import useFetchQuery from "../../services/useFetchQuery";
 import NoProductsFound from "./NoProductsFound";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Link } from "react-router-dom";

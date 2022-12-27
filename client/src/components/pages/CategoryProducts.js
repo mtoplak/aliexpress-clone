@@ -1,12 +1,11 @@
 import React from "react";
-import Header from "./Header";
-import SearchBar from "./SearchBar";
+import Header from "../layout/Header";
+import SearchBar from "../layout/SearchBar";
 import { useParams } from "react-router-dom";
-import useFetchProductsFromCategory from "./useFetchProductsFromCategory";
-import useFetchSubcategories from "./useFetchSubcategories";
+import useFetchProductsFromCategory from "../../services/useFetchProductsFromCategory";
+import useFetchSubcategories from "../../services/useFetchSubcategories";
 import { Link } from "react-router-dom";
-import SearchResult from "./SearchResult";
-
+import SearchResult from "../search/SearchResult";
 
 function CategoryProducts() {
   const params = useParams();

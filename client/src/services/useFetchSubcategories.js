@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-const fetchSubcategories = require("../services/fetch.js").fetchSubcategories;
+const fetchSubcategories = require("./fetch.js").fetchSubcategories;
 const host = require("../constants").host;
 
 const useFetchSubcategories = (category) => {

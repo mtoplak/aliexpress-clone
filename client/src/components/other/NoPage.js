@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "./Header";
-import SearchBar from "./SearchBar";
+import Header from "../layout/Header";
+import SearchBar from "../layout/SearchBar";
 //import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +13,7 @@ function NoPage() {
 
   function goBack() {
     navigate("/");
-  };
+  }
 
   return (
     <>
@@ -37,7 +37,9 @@ function NoPage() {
         >
           But we still have lots for you to discover
         </div>
-        <button id="back" onClick={goBack}>Back to homepage</button>
+        <button id="back" onClick={goBack}>
+          Back to homepage
+        </button>
       </div>
     </>
   );

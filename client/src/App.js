@@ -1,14 +1,14 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Product from "./components/Product";
-import CategoryProducts from "./components/CategoryProducts";
-import SubcategoryProducts from "./components/SubcategoryProducts";
-import SearchResults from "./components/SearchResults";
-import Basket from "./components/Basket";
-import NoPage from "./components/NoPage";
-import WishList from "./components/WishList";
+import Product from "./components/product/Product";
+import CategoryProducts from "./components/pages/CategoryProducts";
+import SubcategoryProducts from "./components/pages/SubcategoryProducts";
+import SearchResults from "./components/search/SearchResults";
+import Basket from "./components/pages/Basket";
+import NoPage from "./components/other/NoPage";
+import WishList from "./components/pages/WishList";
 import { UserContext } from "./context/UserContext.js";
-import HomeScreen from "./components/HomeScreen";
+import HomeScreen from "./components/pages/HomeScreen";
 import { useState, useMemo } from "react";
 
 function App() {

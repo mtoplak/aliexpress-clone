@@ -1,5 +1,5 @@
 import React from "react";
-import cart from "../assets/nothingFound.png";
+import cart from "../../assets/nothingFound.png";
 
 function NoProductsFound() {
   return (

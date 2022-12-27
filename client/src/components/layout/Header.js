@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import Modal from "react-modal";
 import { useState, useEffect, useContext } from "react";
 //const jwt = require("jsonwebtoken");
-import { UserContext } from "../context/UserContext";
+import { UserContext } from "../../context/UserContext";
 
-const host = require("../constants").host;
+const host = require("../../constants").host;
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);

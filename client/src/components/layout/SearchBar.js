@@ -1,6 +1,6 @@
 import React from "react";
-import cart from "../assets/cart.png";
-import logo from "../assets/logo.png";
+import cart from "../../assets/cart.png";
+import logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 
 function SearchBar(props) {

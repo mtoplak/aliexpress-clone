@@ -1,7 +1,7 @@
 import React from "react";
-import category from "../assets/categories.png";
+import category from "../../assets/categories.png";
 import { Link } from "react-router-dom";
-import useFetchCategories from "./useFetchCategories";
+import useFetchCategories from "../../services/useFetchCategories";
 
 function Categories() {
   const [categories] = useFetchCategories();

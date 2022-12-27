@@ -1,13 +1,13 @@
 import React from "react";
-import Header from "./Header";
-import SearchBar from "./SearchBar";
+import Header from "../layout/Header";
+import SearchBar from "../layout/SearchBar";
 import { useContext, useState, useEffect } from "react";
-import { UserContext } from "../context/UserContext";
+import { UserContext } from "../../context/UserContext";
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
 import ReactModal from "react-modal";
 
-const host = require("../constants").host;
+const host = require("../../constants").host;
 
 function WishList() {
   const { user /*, setUser*/ } = useContext(UserContext);
@@ -28,30 +28,32 @@ function WishList() {
   document.title = "My wish list - Aliexpress";
 
   useEffect(() => {
-    fetch(`${host}/wishlist`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        action: "getAll",
-        email: user.email,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        fetch(`${host}/wishlistProducts`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            ids: data.wishlistItems,
-          }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data);
-            setWishlistItems(data);
-          });
-      });
+    if (user) {
+      fetch(`${host}/wishlist`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "getAll",
+          email: user.email,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          fetch(`${host}/wishlistProducts`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              ids: data.wishlistItems,
+            }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data);
+              setWishlistItems(data);
+            });
+        });
+    }
   }, [user]);
 
   const registerHandler = async (e) => {

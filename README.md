@@ -1,4 +1,4 @@
-# aliexpress-clone
+# Aliexpress clone
 
 This app is not optimized for mobile devices.
 

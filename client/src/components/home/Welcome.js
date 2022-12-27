@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Modal from "react-modal";
 import { useState } from "react";
-import { UserContext } from "../context/UserContext";
+import { UserContext } from "../../context/UserContext";
 
-const host = require("../constants").host;
+const host = require("../../constants").host;
 
 function Welcome() {
   const [isOpen, setIsOpen] = useState(false);

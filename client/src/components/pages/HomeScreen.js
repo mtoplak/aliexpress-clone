@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "./Header";
-import SearchBar from "./SearchBar";
-import HomeSection from "./HomeSection";
+import Header from "../layout/Header";
+import SearchBar from "../layout/SearchBar";
+import HomeSection from "../home/HomeSection";
 
 function HomeScreen() {
   document.title =

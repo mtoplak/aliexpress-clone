@@ -1,17 +1,17 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import Header from "./Header";
-import SearchBar from "./SearchBar";
-import useFetchOneProduct from "./useFetchOneProduct";
-import AddToWishlist from "../assets/heart.svg";
-import AddedToWishlist from "../assets/heart-solid.svg";
+import Header from "../layout/Header";
+import SearchBar from "../layout/SearchBar";
+import useFetchOneProduct from "../../services/useFetchOneProduct";
+import AddToWishlist from "../../assets/heart.svg";
+import AddedToWishlist from "../../assets/heart-solid.svg";
 import { useState, useContext, useEffect } from "react";
 import Rating from "./Rating";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../context/UserContext";
+import { UserContext } from "../../context/UserContext";
 import Modal from "react-modal";
 
-const host = require("../constants").host;
+const host = require("../../constants").host;
 
 function Product() {
   const params = useParams();
